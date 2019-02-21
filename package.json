@@ -1,0 +1,22 @@
+{
+  "name": "splash-paper",
+  "version": "1.0.0",
+  "description": "Auto set macos wallpaper with Unsplash api",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^4.0.5",
+    "es6-promise": "^4.2.6",
+    "isomorphic-fetch": "^2.2.1",
+    "unsplash-js": "^4.8.0",
+    "unsplash": "^4.2.0",
+    "whatwg-fetch": "^3.0.0",
+    "wallpaper": "^4.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "Samuel Weekes",
+  "license": "ISC"
+}
