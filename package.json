@@ -7,10 +7,11 @@
     "electron": "^4.0.5",
     "es6-promise": "^4.2.6",
     "isomorphic-fetch": "^2.2.1",
-    "unsplash-js": "^4.8.0",
+    "nedb": "^1.8.0",
     "unsplash": "^4.2.0",
-    "whatwg-fetch": "^3.0.0",
-    "wallpaper": "^4.2.0"
+    "unsplash-js": "^4.8.0",
+    "wallpaper": "^4.2.0",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {},
   "scripts": {
