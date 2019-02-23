@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-align: center;
+    justify-content: center;
+    background-color: transparent;
+}
+
+#search, #path {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    margin-top: 8px;
+    height: 35px;
+    width: 150px;
+    border-radius: 0px;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: none;
+}
+
+#search:focus, #path:focus {
+    border: 1px solid rgb(196, 53, 53);
+    box-shadow: 0 0 3px rgb(196, 53, 53);
+    outline-color: transparent;
+    outline-style: none;
+}
