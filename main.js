@@ -1,14 +1,15 @@
 const {app, dialog, Menu, Tray, BrowserWindow, globalShortcut, ipcMain} = require('electron');
-const {config} = require('./config.js');
-const {CONSTANTS} = require('./constants.js');
-let tray = null;
+const {config} = require('./js/config.js');
+const {timer} = require('./js/timer.js');
+const {CONSTANTS} = require('./js/constants.js');
+const {api} = require('./js/api.js');
 let pathWin = null;
 let searchWin = null;
 let contextMenu = null;
 
 app.on('ready', () => {
     globalShortcut.register('Option+Cmd+p', () => {
-        console.log('Changing wallpaper...');
+        api.getImage();
     });
     searchWin = new BrowserWindow({
         width: 170,
@@ -27,6 +28,8 @@ app.on('ready', () => {
     });
     pathWin.on('close', () => {pathWin.hide(); pathWin = null;});
     initMenu();
+    api.setConfig();
+    timer.start(api.getImage);
 });
 
 ipcMain.on('search', (event, data) => {
@@ -52,7 +55,7 @@ async function initMenu() {
         let menuTemplate = [
             {
                 label: 'Get Wallpaper',
-                click: () => {console.log('Getting wallpaper...');},
+                click: () => {api.getImage()},
             },
             {
                 label: 'Set Search',
@@ -74,23 +77,57 @@ async function initMenu() {
                 label: 'Set Timer',
                 submenu: [
                     {
+                        label: 'None',
+                        checked: (await config.readConfig('DELAY') === false) ? true : false, 
+                        click: () => {
+                            config.setConfig({key: 'DELAY', value: false})
+                            timer.stop();
+                        },
+                        type: 'radio'
+                    },
+                    {
+                        label: 'Two Minutes',
+                        checked: (await config.readConfig('DELAY') === CONSTANTS.TWOMIN) ? true : false, 
+                        click: () => {
+                            config.setConfig({key: 'DELAY', value: CONSTANTS.TWOMIN})
+                            timer.start(api.getImage);
+                      },
+                        type: 'radio'
+                    },
+                    {
                         label: 'Hourly',
-                        click: () => {config.setConfig({key: 'DELAY', value: CONSTANTS.HOUR})},
+                        checked: (await config.readConfig('DELAY') === CONSTANTS.HOUR) ? true : false, 
+                        click: () => {
+                            config.setConfig({key: 'DELAY', value: CONSTANTS.HOUR})
+                            timer.start(api.getImage);
+                      },
                         type: 'radio'
                     },
                     {
                         label: '12 Hours',
-                        click: () => {config.setConfig({key: 'DELAY', value: CONSTANTS.HALFDAY})},
+                        checked: (await config.readConfig('DELAY') === CONSTANTS.HALFDAY) ? true : false, 
+                        click: () => {
+                            config.setConfig({key: 'DELAY', value: CONSTANTS.HALFDAY})
+                            timer.start(api.getImage);
+                      },
                         type: 'radio'
                     },
                     {
                         label: 'Daily',
-                        click: () => {config.setConfig({key: 'DELAY', value: CONSTANTS.FULLDAY})},
+                        checked: (await config.readConfig('DELAY') === CONSTANTS.FULLDAY) ? true : false, 
+                        click: () => {
+                            config.setConfig({key: 'DELAY', value: CONSTANTS.FULLDAY})
+                            timer.start(api.getImage);
+                      },
                         type: 'radio'
                     },
                     {
                         label: 'Weekly',
-                        click: () => {config.setConfig({key: 'DELAY', value: CONSTANTS.WEEK})},
+                        checked: (await config.readConfig('DELAY') === CONSTANTS.WEEK) ? true : false, 
+                        click: () => {
+                            config.setConfig({key: 'DELAY', value: CONSTANTS.WEEK})
+                            timer.start(api.getImage);
+                      },
                         type: 'radio'
                     }
                 ]
@@ -119,7 +156,6 @@ async function initMenu() {
                         checked: await config.readConfig('OVERWRITE'), 
                         click: async () => {
                             let toggle = await setToggle('OVERWRITE');
-                            console.log(toggle);
                             config.setConfig({key: 'OVERWRITE', value: toggle})},
                         type: 'checkbox'
                     },

@@ -1,0 +1,7 @@
+exports.CONSTANTS = {
+    TWOMIN : (120*1000),
+    HOUR : (3600*1000),
+    HALFDAY : (43200*1000),
+    FULLDAY : (86400*1000),
+    WEEK : (604800*1000),
+}

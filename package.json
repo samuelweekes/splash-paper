@@ -5,13 +5,8 @@
   "main": "main.js",
   "dependencies": {
     "electron": "^4.0.5",
-    "es6-promise": "^4.2.6",
-    "isomorphic-fetch": "^2.2.1",
-    "nedb": "^1.8.0",
-    "unsplash": "^4.2.0",
-    "unsplash-js": "^4.8.0",
-    "wallpaper": "^4.2.0",
-    "whatwg-fetch": "^3.0.0"
+    "require": "^2.4.20",
+    "wallpaper": "^4.2.0"
   },
   "devDependencies": {},
   "scripts": {
