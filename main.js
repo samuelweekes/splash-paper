@@ -35,13 +35,13 @@ app.on('ready', () => {
 ipcMain.on('search', (event, data) => {
     searchWin.hide();
     config.setConfig({key: 'SEARCH', value: data});
-    dialog.showErrorBox('Information', 'Setting Saved!')
+    dialog.showErrorBox('Success!', 'Setting Saved!')
 });
 
 ipcMain.on('path', (event, data) => {
     pathWin.hide();
     config.setConfig({key: 'PATH', value: data});
-    dialog.showErrorBox('Information', 'Setting Saved!')
+    dialog.showErrorBox('Success!', 'Setting Saved!')
 });
 
 async function setToggle(key) {
@@ -69,7 +69,7 @@ async function initMenu() {
                             nodeIntegration: true
                         });
                     }
-                    searchWin.loadFile('search.html'); 
+                    searchWin.loadFile('./views/search.html'); 
                     searchWin.show();
                 }
             },
@@ -147,7 +147,7 @@ async function initMenu() {
                                     nodeIntegration: true
                                 });
                             }
-                            pathWin.loadFile('path.html'); 
+                            pathWin.loadFile('./views/path.html'); 
                             pathWin.show();
                         }
                     },
