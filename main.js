@@ -50,7 +50,8 @@ async function setToggle(key) {
 }
 
 async function initMenu() {
-        const tray = new Tray('./icons/icon.png');
+        const iconPath = __dirname + '/icons/icon.png';
+        const tray = new Tray(iconPath);
         tray.setToolTip('Splash-Paper!');
         let menuTemplate = [
             {
@@ -160,6 +161,10 @@ async function initMenu() {
                         type: 'checkbox'
                     },
                 ]
+            },
+            {
+                label: 'Exit',
+                role: 'quit'
             },
         ];
     contextMenu = Menu.buildFromTemplate(menuTemplate);

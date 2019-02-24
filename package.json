@@ -1,14 +1,18 @@
 {
   "name": "splash-paper",
+  "productName": "Splash-Paper!",
   "version": "1.0.0",
   "description": "Auto set macos wallpaper with Unsplash api",
   "main": "main.js",
   "dependencies": {
-    "electron": "^4.0.5",
+    "request": "^2.88.0",
     "require": "^2.4.20",
     "wallpaper": "^4.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "electron": "^4.0.5",
+    "electron-packager": "^13.1.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron ."
